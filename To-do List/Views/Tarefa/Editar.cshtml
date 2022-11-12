@@ -1,0 +1,30 @@
+﻿@model To_do_List.Models.Tarefa
+@{
+    ViewData["Title"] = "Editar";
+}
+
+<h1>Criar Nova Tarefa</h1>
+<hr />
+<form asp-action="Editar">
+    <div class="form-group">
+        <label asp-for="Titulo" class="form-label">Titulo</label>
+        <input asp-for="Titulo" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Descricao" class="form-label">Descrição</label>
+        <textarea asp-for="Descricao" class="form-control"></textarea>
+    </div>
+    <div class="form-group">
+        <label asp-for="Data" class="form-label">Data</label>
+        <input asp-for="Data" type="date" class="form-control"/>
+    </div>
+    <div class="form-group">
+        <label asp-for="Status" class="form-label">Status</label>
+        <select asp-for="Status" class="form-control">
+            @foreach(var option in Enum.GetValues(typeof(TarefaStatus))) {
+                    <option>@option</option>
+            }
+        </select>
+    </div>
+    <input type="submit" value="Editar" class="btn btn-primary mt-3"/>
+</form>

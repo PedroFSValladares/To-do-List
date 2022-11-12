@@ -1,0 +1,49 @@
+﻿@model IEnumerable<To_do_List.Models.Tarefa>
+@{
+    ViewData["Title"] = "Pesquisa";
+}
+
+<div>
+    <label for="tipoPesquisa">Pesquisar por:</label>
+</div>
+<div>
+</div>
+<form asp-action="Pesquisar" class="pesquisa" method="get">
+    <label for="Titulo"><input type="radio" name="tipoPesquisa" id="Titulo" value="ObterPorTitulo" checked/>Titulo</label> <br />
+    <label for="Data"><input type="radio" name="tipoPesquisa" id="Data" value="ObterPorData"/>Data</label> <br />
+    <label for="Status"><input type="radio" name="tipoPesquisa" id="Status" value="ObterPorStatus"/>Status</label> <br />
+    <div class="input mt-2 mb-2">
+        <input type="text" name="parametro"/>
+    </div>
+    <input type="submit" value=" Pesquisar" class="btn btn-primary"/>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Titulo)</th>
+            <th>@Html.DisplayNameFor(model => model.Descricao)</th>
+            <th>@Html.DisplayNameFor(model => model.Data)</th>
+            <th>@Html.DisplayNameFor(model => model.Status)</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            @foreach (var tarefa in Model)
+            {
+                <tr>
+                    <td>@tarefa.Titulo</td>
+                    <td>@tarefa.Descricao</td>
+                    <td>@tarefa.Data.ToString("dd/MM/yyyy")</td>
+                    <td>@tarefa.Status</td>
+                    <td>
+                        <a asp-action="Detalhes" asp-route-id="@tarefa.Id" class="btn btn-info">Detalhes</a>
+                        <a asp-action="Editar" asp-route-id="@tarefa.Id" class="btn btn-primary">Editar</a>
+                        <a asp-action="Deletar" asp-route-id="@tarefa.Id" class="btn btn-danger">Deletar</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

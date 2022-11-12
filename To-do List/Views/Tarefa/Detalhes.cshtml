@@ -1,0 +1,15 @@
+﻿@model To_do_List.Models.Tarefa
+@{
+    ViewData["Title"] = "Detalhes";
+}
+
+<h1>Detalhes da tarefa</h1>
+<hr />
+<h2>@Model.Titulo</h2>
+<p>@Model.Descricao</p>
+<p>Data: @Model.Data.ToShortDateString()</p>
+<p>Status: @Model.Status</p>
+<div>
+    <a asp-action="Editar" asp-route-id="@Model.Id" class="btn btn-primary">Editar</a>
+    <a asp-action="Deletar" asp-route-id="@Model.Id" class="btn btn-danger">Deletar</a>
+</div>
